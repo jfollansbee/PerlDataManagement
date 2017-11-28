@@ -1,0 +1,396 @@
+# This contain subroutines for the public add study script
+
+sub Header {
+
+print <<"header";
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Clinical Research for Investigators</title>
+<script language="JavaScript">
+
+<!--
+// This function validates the form data and selects the correct search
+function goSearch(theForm) {
+var invalidChars = "/,;'<>\\\"[]{}\|=+*&^%!";	// Extra two slashes to escape double quote properly
+var studies_action = "public_search_study.pl";
+var site_action = "../perlfect/search/search.pl";
+var p = theForm.p.value;
+var lang = theForm.lang.value;
+var include = theForm.include.value;
+var exclude = theForm.exclude.value;
+var penalty = theForm.penalty.value;
+var mode = theForm.mode.value;
+var searchterm = theForm.search_term.value;
+for (i = 0; i < theForm.search_type.length; i++) {
+	if (theForm.search_type[i].checked) {
+	var searchtype = theForm.search_type[i].value;
+		}
+	}
+
+// Check the search term validity
+if (searchterm == "") {
+	alert("Please enter a search term.");
+	return false;
+	}
+for (i = 0; i < invalidChars.length; i++) {
+badChar = invalidChars.charAt(i);
+	if (searchterm.indexOf(badChar,0) > -1) {
+		alert("Please use only characters and/or numerals in your search term.");
+		return false;
+		}
+} // end for loop
+
+// Run the correct search, based on the search type.
+if (searchtype == "studies") {
+	document.searchForm.action = studies_action + "?search_term=" + searchterm + "&p=1";
+	return true;
+	} else if (searchtype == "site") {
+	document.searchForm.action = site_action + "?p=" + p + "&lang=" + lang + "&include=" + include + "&exclude=" + exclude + "&penalty=" + penalty + "&mode=" + mode + "&search_term=" + searchterm;
+	return true;
+	}
+} // end function goSearch 
+
+
+			var selectedImage = 0;
+
+			
+
+				var Nav1off = new Image();
+				Nav1off.src = "../../../../images/home.gif";
+				var Nav1on = new Image();
+				Nav1on.src = "../../../../images/home-over.gif";
+				var Nav1vis = new Image();
+				Nav1vis.src = "../../../../images/home-over.gif";
+
+				var Nav2off = new Image();
+				Nav2off.src = "../../../../images/geninfo.gif";
+				var Nav2on = new Image();
+				Nav2on.src = "../../../../images/geninfo-over.gif";
+				var Nav2vis = new Image();
+				Nav2vis.src = "../../../../images/geninfo-over.gif";
+
+				var Nav3off = new Image();
+				Nav3off.src = "../../../../images/news.gif";
+				var Nav3on = new Image();
+				Nav3on.src = "../../../../images/news-over.gif";
+				var Nav3vis = new Image();
+				Nav3vis.src = "../../../../images/news-over.gif";
+
+				var Nav4off = new Image();
+				Nav4off.src = "../../../../images/bri_investigates.gif";
+				var Nav4on = new Image();
+				Nav4on.src = "../../../../images/bri_investigates_over.gif";
+				var Nav4vis = new Image();
+				Nav4vis.src = "../../../../images/bri_investigates_over.gif";
+
+				var Nav5off = new Image();
+				Nav5off.src = "../../../../images/clinical.gif";
+				var Nav5on = new Image();
+				Nav5on.src = "../../../../images/clinical-over.gif";
+				var Nav5vis = new Image();
+				Nav5vis.src = "../../../../images/clinical-over.gif";
+
+				var Nav6off = new Image();
+				Nav6off.src = "../../../../images/clinical_investigators-over.gif";
+				var Nav6on = new Image();
+				Nav6on.src = "../../../../images/clinical_investigators-over.gif";
+				var Nav6vis = new Image();
+				Nav6vis.src = "../../../../images/clinical_investigators-over.gif";
+	
+
+				var Nav7off = new Image();
+				Nav7off.src = "../../../../images/contact.gif";
+				var Nav7on = new Image();
+				Nav7on.src = "../../../../images/contact-over.gif";
+				var Nav7vis = new Image();
+				Nav7vis.src = "../../../../images/contact-over.gif";
+
+				var Nav8off = new Image();
+				Nav8off.src = "../../../../images/opportunities.gif";
+				var Nav8on = new Image();
+				Nav8on.src = "../../../../images/opportunities-over.gif";
+				var Nav8vis = new Image();
+				Nav8vis.src = "../../../../images/opportunities-over.gif";
+
+				var Nav9off = new Image();
+				Nav9off.src = "../../../../images/vmcenter.gif";
+				var Nav9on = new Image();
+				Nav9on.src = "../../../../images/vmcenter-over.gif";
+				var Nav9vis = new Image();
+				Nav9vis.src = "../../../../images/vmcenter-over.gif";	
+	
+				
+				function MouseOver(imageNum){
+					if (selectedImage != imageNum)
+					eval("document.Nav" + imageNum + ".src = Nav" + imageNum + "on.src");
+			}
+
+
+			
+			function MouseOut(imageNum){
+				if (selectedImage != imageNum)
+				eval("document.Nav" + imageNum + ".src = Nav" + imageNum + "off.src");
+
+			}
+
+			function MouseClick(imageNum){
+				var oldSelection = selectedImage;
+				selectedImage = imageNum;
+				if ((oldSelection != 0) && (oldSelection != imageNum)){
+					MouseOut(oldSelection);
+
+				}
+
+				eval("document.Nav" + imageNum + ".src = Nav" + imageNum + "vis.src");
+
+				}
+				<!--end-->
+
+</script>
+<link href="../../../../css/global.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<!--table for navigation-->
+<table width="160"  border="0" cellspacing="3" cellpadding="0">
+  <tr> 
+    <td width="2" rowspan="14" bgcolor="9999ccc"><img src="../../../../images/spacer.gif" width="2"></td>
+  <tr> 
+    <td width="197" valign="top"><a href="../../../../index.shtml"><img src="../../../../images/logo.gif" border="0" alt="BRI Home"></a></td>
+    <td rowspan="13" valign="top" border="5">
+	<!--table for the body-->
+	  <table width="400" border="0" cellspacing="0" cellpadding="0">
+	<tbody>
+        <tr> 
+          <td width="13" rowspan="5" valign="top"><img src="../../../../images/mid_line.gif"></td>
+          <td colspan="3" align="right" valign="bottom"><img src="../../../../images/green_top.gif"></td>
+        </tr>
+
+        <tr> 
+          <td height="35"><img src="../../../../images/cri_header.gif" width="371" height="35" border="0"></td>
+  <td valign="top"><img src="../../../../images/bottles.jpg" width="158" height="83"></td>
+          <td rowspan="3" valign="top"><img src="../../../../images/right_lav.jpg"></td>
+        </tr>
+
+        <tr> 
+          <td class="bluedot" valign="top" style="padding-left: 0px">
+
+	<a href="../../../../quick_research/index.shtml#quick" class="subnav">Useful Links</a>
+
+	<!-- &nbsp;&nbsp;&#8226;<a href="../../../../cr_investigators/documents/NewsletterSPRING2002final.pdf" class="subnav">Newsletter</a> -->
+
+	</td>
+          <td valign="top"><img src="../../../../images/cri_label.gif" width="158" height="32"></td>
+        </tr>
+
+        <tr> 
+          <td valign="top">
+		  <!--table to hold text-->
+
+header
+
+} # end sub Header
+
+sub Footer {
+
+print <<"footer";
+
+			</td><td>&nbsp;</td>
+			
+        </tr>
+              <tr>
+                <td valign="top" class="text_small" style="padding-left: 10px"><a href="#" class="subnav" style="padding-left: 0px">Back to Top</a><span class="break">&nbsp;l&nbsp;</span><a href="../../../../quick_research/index.shtml#quick" class="subnav" style="padding-left: 0px">Useful Links</a> <!-- <span class="break">&nbsp;l&nbsp;</span><a href="documents/NewsletterSPRING2002final.pdf" class="subnav" style="padding-left: 0px">Newsletter</a> --> <br><a href="index.shtml" class="subnav" style="padding-left: 0px">Clinical Research for Investigators</a><br><br>Contents &copy; 2003 Research Institute. All rights reserved. <a href="../../../../terms_of_use.shtml" class="body" style="font-size:7pt">Terms of Use</a>
+                </td>
+              </tr>
+		</tbody>
+      </table>
+
+	 
+</td>
+  </tr>
+<tr> 
+    <td><a href="../../../../index.shtml" onMouseOver="MouseOver(1);" onMouseOut="MouseOut(1);" onClick="MouseClick(1)"><img name="Nav1" src="../../../../images/home.gif" border="0" alt="BRI Home"></a></td>
+   </tr>
+  <tr> 
+    <td><a href="../../../../gen_info/index.shtml" onMouseOver="MouseOver(2);" onMouseOut="MouseOut(2);" onClick="MouseClick(2)"><img name="Nav2" src="../../../../images/geninfo.gif" border="0" alt="General Information"></a></td>
+   
+  </tr>
+  <tr> 
+    <td><a href="../../../../news_events/index.shtml" onMouseOver="MouseOver(3);" onMouseOut="MouseOut(3);" onClick="MouseClick(3)"><img name="Nav3" src="../../../../images/news.gif" border="0" alt="News and Events"></a></td>
+
+  </tr>
+  <tr> 
+    <td><a href="../../../../bri_investigators/index.shtml" onMouseOver="MouseOver(4);" onMouseOut="MouseOut(4);" onClick="MouseClick(4)"><img name="Nav4" src="../../../../images/bri_investigates.gif" border="0" alt="BRI Investigators and Research"></a></td>
+    </tr>
+  <tr> 
+    <td><a href="../../../../clinical_research/index.shtml"" onmouseover="MouseOver(5);" onMouseOut="MouseOut(5);" onClick="MouseClick(5)"><img name="Nav5" src="../../../../images/clinical.gif" border="0" alt="Clinical Research"></a></td>
+  </tr>
+  <tr> 
+    <td><a href="../../../../cr_investigators/index.shtml"" onmouseover="MouseOver(6);" onMouseOut="MouseOut(6);" onClick="MouseClick(6)"><img name="Nav6" src="../../../../images/clinical_investigators-over.gif" border="0" alt="Clinical Research for Investigators"></a></td>
+  </tr>
+  <tr> 
+    <td><a href="../../../../contact/index.shtml"" onmouseover="MouseOver(7);" onMouseOut="MouseOut(7);" onClick="MouseClick(7)"><img name="Nav7" src="../../../../images/contact.gif" border="0" alt="Contact Us"></a></td>
+  </tr>
+  <tr> 
+    <td><a href="../../../../opportunity_giving/index.shtml" onMouseOver="MouseOver(8);" onMouseOut="MouseOut(8);" onClick="MouseClick(8)"><img name="Nav8" src="../../../../images/opportunities.gif" border="0" alt="Opportunities for Giving"></a></td>
+  </tr>
+  <tr> 
+    <td><a href="http://www.blah.org/default.asp" onMouseOver="MouseOver(9);" onMouseOut="MouseOut(9);" onClick="MouseClick(9)"><img name="Nav9" src="../../../../images/vmcenter.gif" border="0" alt="Virginia Mason Medical Center"></a></td>
+  </tr>
+  <tr> 
+    <form method="POST" action="" enctype="multipart/form-data" name="searchForm" onSubmit="return goSearch(this)">
+      <td><input type="hidden" name="p" value="1"> <input type="hidden" name="lang" value="en"> 
+        <input type="hidden" name="include" value=""> <input type="hidden" name="exclude" value=""> 
+        <input type="hidden" name="penalty" value="0"> <input type="hidden" name="mode" value="all"> 
+        &nbsp;&nbsp;&nbsp;&nbsp; <input name="search_term" class="search" type="text" size="23" maxlength="150"></td>
+
+  </tr>
+  <tr> 
+    <td>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="search_type" value="site"> 
+      <img src="../../../../images/siteword.gif"> <input type="radio" name="search_type" value="studies" checked> 
+      <img src="../../../../images/studies.gif"><input type="image" src="../../../../images/search_home.gif" width="52" height="12" border="0" name="search_image"  alt="Search">
+	</td>
+      </form>
+  </tr>
+  <tr>
+  <td><img src="../../../../images/spacer.gif" width="159" height="1300"></td>
+  </tr>
+</table>
+
+footer
+
+} # end sub Footer
+
+sub AddStudyInstruct {
+
+print <<"instructions";
+<TABLE WIDTH="380" BORDER="0" CELLPADDING="2" CELLSPACING="0">
+<TR>
+<TD CLASS=\"text\" style="padding-left: 8px"><B>Online Study Add or Modify Description Form</B></TD>
+</TR>
+<TR>
+<TD CLASS=\"text\">
+<OL>
+<LI>Write study descriptions in this form for posting on the BRI Web site. This form is part of the IRB application process. <B>Please write study name and description so that potential study enrollees with limited scientific or medical background can clearly understand.</B> Spell out acronyms and avoid overly technical terminology.</LI>
+<LI>When the form is completed, click \"Submit.\" The data will be sent to BRI staff. Questions? Please send email to <A HREF=\"mailto:crp\@blah.org\" class=\"body\">crp\@blah.org</A> or call 206-XXX-XXXX.</LI>
+</OL>
+</TD>
+</TR>
+</TABLE>
+instructions
+} # end sub AddStudyInstruct
+
+sub CheckForm {
+
+print <<"this_script";
+<script language="JavaScript">
+<!--
+// These scripts work with the add study form elements
+
+// This function checks the Add Study form
+function checkaddstudyForm(theForm) {
+var studyname = theForm.study_name.value;
+var studyid = theForm.study_id.value;
+var category = theForm.category.value;
+var pilastname = theForm.pi_last_name.value;
+var pifirstname = theForm.pi_first_name.value;
+var piemail = theForm.pi_email.value;
+var piphone = theForm.pi_phone.value;
+var sclastname = theForm.sc_last_name.value;
+var scfirstname = theForm.sc_first_name.value;
+var scemail = theForm.sc_email.value;
+var scphone = theForm.sc_phone.value;
+var description = theForm.description.value;
+var participatewho = theForm.participate_who.value;
+var participatewhat = theForm.participate_what.value;
+
+// Check that all text elements have data
+addForm = new Array(studyname, studyid, pilastname, pifirstname, piemail, piphone, sclastname, scfirstname, scemail, scphone, description, participatewho, participatewhat);
+for (var i = 0; i < addForm.length; i++) {
+        if (addForm[i] == "") {
+                alert(\"Please make sure all text elements are filled, such as names and study description.\");
+                return false;
+                }
+}
+
+// Check that a category is selected
+if(category == 0) {
+        alert(\"Please select a category. If the correct one is not available, please see the site administrator.\");
+        return false;
+        }
+
+// Check that email addresses are valid using the valEmail function below
+addEmail = new Array(piemail, scemail);
+var counter = 0;
+for (var i = 0; i < addEmail.length; i++) {
+        if (addEmail[i] != \"\") {
+                var valid = true;
+                valid = valEmail(addEmail[i]);
+                if (valid == false) {
+                        counter++;
+                                if (counter != 0) {
+                                return false;
+                                } else {
+                                return true;
+                                }
+                        }
+                }
+        } // end for loop
+
+} // end function checkaddstudyForm
+
+// This function validates the email address for errors
+function valEmail(email_address) {
+invalidChars = \"/;'<>\\"[]{}\\|=+*&^%$#!\";
+var email = true;
+// alert(email_address);
+if (email_address != '') {
+        for (i = 0; i < invalidChars.length; i++) { // Check for bad characters.
+                badChar = invalidChars.charAt(i);
+                if (email_address.indexOf(badChar,0) > -1) {
+                        alert("Please avoid these characters in your email addresses: '[space]/:,;'");
+                        email = false;
+                        }
+                }
+        var atPos = email_address.indexOf('\@',1); // Check for an '\@' sign.
+        if (atPos == -1) {
+                alert("Your email addresses should have an '\@' sign.");
+                email = false;
+                }
+        if (email_address.indexOf('\@', atPos + 1) > -1) { // Make sure there's only one '\@' sign.
+                alert("You only need one '\@' sign in an email address.");
+                email = false;
+                }
+        var periodPos = email_address.indexOf('.', atPos); // Make sure there's at least one dot.
+        if (periodPos == -1) {
+                alert("You should have at least one '.' in email email address, as in '.com'.");
+                email = false;
+                }
+        if ((periodPos + 3) > email_address.length) { // Make sure top level domain noted.
+                alert("Make sure you have at least two characters in your email addresses\\nafter the '.', such as '.com' or '.uk'.");
+                email = false;
+                }
+        return email; // If everything's okay, continue the function
+        }
+} // end function valEmail
+
+// The following function counts the words in the description fields of the Add Study form
+function wordCounter(field, countfield, maxlimit) {
+wordcounter=0;
+for (x=0;x<field.value.length;x++) {
+        if (field.value.charAt(x) == " " && field.value.charAt(x-1) != " ")  {wordcounter++}  // Counts the spaces while ignoring double spaces, usually one in between each word.
+        if (wordcounter > 250) {field.value = field.value.substring(0, x);}
+        else {countfield.value = maxlimit - wordcounter;}
+        }
+} // end function wordCounter
+
+// -->
+</script>
+
+this_script
+
+} # end sub CheckForm
+
+1;
